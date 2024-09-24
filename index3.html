@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="sticky z-50 top-0 bg-gray-700 backdrop:filter border border-gray-100 backdrop-blur-sm bg-opacity-20  p-4 flex justify-between items-center ">
+        
+        <button id="blogLink" class="btn btn-outline ml-4">Blog</button> 
+        <div class="flex items-center space-x-4">
+            <img class="lg:w-[30px] w-[20px] ml-6" src="./assets/logo.png" alt="Logo">
+            <h1 class="lg:text-2xl text-xl font-bold">Donate Bangladesh</h1>
+        </div>
+        <div class="flex items-center">
+            <img src="./assets/coin.png" alt="Coin">
+            <span class="lg:text-lg text-xl font-semibold">Balance: <span id="account-balance">BDT 1000</span></span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Buttons -->
+    <section>
+        <div class="flex justify-center gap-5 mt-8">
+            <button id="donationBtn" class="btn btn-accent">Donation</button>
+            <button id="historyBtn" class="btn btn-accent">History</button>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donation-section" class="grid grid-cols-1 md:grid-cols-3 items-center gap-6 p-6">
+        <!-- Donation Card 1 -->
+        <div class="card shadow-lg p-4 lg:w-[1140px] border border-gray-400 lg:h-[460px]">
+            <div class="lg:flex">
+                <img src="./assets/noakhali.png" class="lg:w-[550px] lg:h-[390px] w-[350px] rounded-md" alt="Noakhali">
+                <div class="ml-4 lg:w-[470px] lg:h-[390px]">
+                    <div class="flex lg:mt-0 mt-4">
+                        <img src="./assets/coin.png" alt="Coin">
+                        <p><span id="donation-amount-1">500 BDT</span></p>
+                    </div>
+                    <h2 class="font-bold text-3xl">Help the Homeless in Noakhali</h2>
+                    <p class="text-gray-600 text-xl">The recent floods in Noakhali have caused significant damage. Your donation will provide essential supplies to those affected.The recent floods in Noakhali have caused significant damage. </p>
+                    <input type="number" id="donation-input-1" class="input input-bordered w-full max-w-xs mt-2" placeholder="Enter amount">
+                    <br>
+                    <button class="btn btn-accent mt-2" onclick="donate(1, 'Noakhali Homeless')">Donate Now</button>
+                </div>
+            </div>
+        </div>
+        </section >
+        <!-- Donation Card 2 -->
+         <section id="donation-section-two" class="ml-6 mt-5">
+        <div class="card border border-gray-400 shadow-lg p-4 lg:w-[1140px] lg:h-[460px]">
+            <div class="lg:flex">
+                <img src="./assets/feni.png" class="lg:w-[550px] lg:h-[390px] w-[350px] rounded-md" alt="Feni">
+                <div class="ml-4 lg:w-[470px] lg:h-[390px]">
+                    <div class="flex lg:mt-0 mt-4">
+                        <img src="./assets/coin.png" alt="Coin">
+                        <p><span id="donation-amount-two">500 BDT</span></p>
+                    </div>
+                    <h2 class="font-bold text-3xl">Support Education in Feni</h2>
+                    <p class="text-gray-600 text-xl">Your donation will help rebuild schools damaged by recent storms.The recent floods in Noakhali have caused significant damage. Your donation will provide essential supplies to those affected.</p>
+                    <input type="number" id="donation-input-2" class="input input-bordered w-full max-w-xs mt-2" placeholder="Enter amount">
+                    <br>
+                    <button class="btn btn-accent mt-2" onclick="donate(2, 'Feni Education')">Donate Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- Donation Card 3 -->
+         <section id="donation-section-three" class="ml-6 mt-5 mb-7 ">
+        <div class="card border border-gray-400 shadow-lg p-4 lg:w-[1140px] lg:h-[460px]">
+            <div class="lg:flex">
+                <img src="./assets/quota-protest.png" class="lg:w-[550px] lg:h-[390px] w-[350px] rounded-md" alt="Quota Protest">
+                <div class="ml-4 lg:w-[470px] lg:h-[390px]">
+                    <div class="flex lg:mt-0 mt-4">
+                        <img src="./assets/coin.png" alt="Coin">
+                        <p><span id="donation-amount-three">500 BDT</span></p>
+                    </div>
+                    <h2 class="font-bold text-3xl">Health Relief for Quota Protesters</h2>
+                    <p class="text-gray-600 text-xl"> The recent floods in Noakhali have caused significant damage to homes  infrastructure. Your donation will help provide essential supplies and  to those affected by this disaster. Every contribution, big or small, makes  difference. Please join us in supporting the relief efforts and making a positive impact on the lives of those in need.</p>
+                    <input type="number" id="donation-input-3" class="input input-bordered w-full max-w-xs mt-2" placeholder="Enter amount">
+                    <br>
+                    <button class="btn btn-accent mt-2" onclick="donate(3, 'Quota Protesters Relief')">Donate Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation History Section -->
+    <section id="history-section" class="hidden p-6">
+        <h2 class="text-2xl font-bold">Donation History</h2>
+        <ul id="history-list" class="list-disc ml-6 mt-4">
+            <!-- Donation history will appear here -->
+        </ul>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+        <div class="modal-box">
+            <h3 class="font-bold text-2xl text-center mb-4">Congrats!</h3>
+            <div class="flex justify-center mb-4">
+                <span class="text-5xl">💰</span>
+            </div>
+            <p class="text-center text-lg">You Have Donated for Humankind Successfully</p>
+            <div class="modal-action justify-center mt-4">
+                <button class="btn btn-accent" onclick="closeModal()">Close Confirmation</button>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+
+        // button section
+        document.getElementById('blogLink').addEventListener('click', function() {
+            window.location.href = 'blog.html'});
+        
+        let balance = 1000;
+        const donationHistory = [];
+
+        let donationAmount1 = 500;
+        let donationAmount2 = 500;
+        let donationAmount3 = 500;
+
+       
+        const balanceElement = document.getElementById('account-balance');
+        const historySection = document.getElementById('history-section');
+        const donationSection = document.getElementById('donation-section');
+        const historyList = document.getElementById('history-list');
+        const successModal = document.getElementById('success-modal');
+
+       
+        function showModal() {
+            successModal.classList.remove('hidden');
+        }
+
+       
+        function closeModal() {
+            successModal.classList.add('hidden');
+        }
+    
+
+        // Update balance function
+        function updateBalance(amount) {
+            balance -= amount;
+            balanceElement.innerText = 'BDT ' + balance;
+        }
+
+        // Update donation  function
+        function updateDonationAmount(id, amount) {
+            let donationAmountElement;
+            if (id === 1) {
+                donationAmount1 += amount;
+                donationAmountElement = document.getElementById('donation-amount-1');
+                donationAmountElement.innerText = donationAmount1 + ' BDT';
+            } else if (id === 2) {
+                donationAmount2 += amount;
+                donationAmountElement = document.getElementById('donation-amount-two');
+                donationAmountElement.innerText = donationAmount2 + ' BDT';
+            } else if (id === 3) {
+                donationAmount3 += amount;
+                donationAmountElement = document.getElementById('donation-amount-three');
+                donationAmountElement.innerText = donationAmount3 + ' BDT';
+            }
+        }
+        function getCurrentDateTime() {
+        const now = new Date();
+        return now.toLocaleString('en-US', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+    }
+    // Add donation to history with date and time
+    function addDonationToHistory(amount, cause) {
+        const dateTime = getCurrentDateTime();
+        donationHistory.push({ amount, cause, dateTime });
+        
+        const historyItem = document.createElement('li');
+        historyItem.innerHTML = `Donated BDT ${amount} to ${cause} on ${dateTime}`;
+        historyList.appendChild(historyItem);
+    }
+        
+
+        // Donation function
+        function donate(id, cause) {
+            const donationInput = document.getElementById('donation-input-' + id);
+            const amount = parseInt(donationInput.value);
+
+            if (isNaN(amount) || amount <= 0 || amount > balance) {
+                alert("Please enter a valid donation amount that doesn't exceed your balance.");
+                return;
+            }
+
+            // Update balance and donation
+            updateBalance(amount);
+            updateDonationAmount(id, amount);
+            addDonationToHistory(amount, cause);
+
+            // Show success modal
+            showModal();
+
+            // Clear the input field
+            donationInput.value = '';
+        }
+
+    // Event listener for "History" button
+document.getElementById('historyBtn').addEventListener('click', () => {
+    
+    document.getElementById('donation-section').classList.add('hidden');
+    document.getElementById('donation-section-two').classList.add('hidden');
+    document.getElementById('donation-section-three').classList.add('hidden');
+   
+    historySection.classList.remove('hidden');
+});
+
+// Event listener for "Donation" button
+document.getElementById('donationBtn').addEventListener('click', () => {
+   
+    document.getElementById('donation-section').classList.remove('hidden');
+    document.getElementById('donation-section-two').classList.remove('hidden');
+    document.getElementById('donation-section-three').classList.remove('hidden');
+ 
+    historySection.classList.add('hidden');
+});
+
+
+    </script>
+</body>
+</html>
