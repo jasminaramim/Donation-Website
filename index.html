@@ -22,3 +22,32 @@
             <span class="lg:text-lg text-xl font-semibold">Balance: <span id="account-balance">BDT 1000</span></span>
         </div>
     </nav>
+    <main></main>
+        <!-- Buttons -->
+    <section>
+        <div class="flex justify-center gap-5 mt-8">
+            <button id="donationBtn" class="btn btn-accent">Donation</button>
+            <button id="historyBtn" class="btn btn-accent">History</button>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donation-section" class="grid grid-cols-1 md:grid-cols-3 items-center gap-6 p-6">
+        <!-- Donation Card 1 -->
+        <div class="card shadow-lg p-4 lg:w-[1140px] border border-gray-400 lg:h-[460px]">
+            <div class="lg:flex">
+                <img src="./assets/noakhali.png" class="lg:w-[550px] lg:h-[390px] w-[350px] rounded-md" alt="Noakhali">
+                <div class="ml-4 lg:w-[470px] lg:h-[390px]">
+                    <div class="flex lg:mt-0 mt-4">
+                        <img src="./assets/coin.png" alt="Coin">
+                        <p><span id="donation-amount-1">500 BDT</span></p>
+                    </div>
+                    <h2 class="font-bold text-3xl">Help the Homeless in Noakhali</h2>
+                    <p class="text-gray-600 text-xl">The recent floods in Noakhali have caused significant damage. Your donation will provide essential supplies to those affected.The recent floods in Noakhali have caused significant damage. </p>
+                    <input type="number" id="donation-input-1" class="input input-bordered w-full max-w-xs mt-2" placeholder="Enter amount">
+                    <br>
+                    <button class="btn btn-accent mt-2" onclick="donate(1, 'Noakhali Homeless')">Donate Now</button>
+                </div>
+            </div>
+        </div>
+        </section >
